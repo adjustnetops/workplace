@@ -3,26 +3,31 @@ services:
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
+    restart: always
     ports:
       - "3000:3000"
   nginx:
     image: nginx:latest
     container_name: nginx
+    restart: always
     ports:
       - "80:80"
   apache:
     image: httpd:latest
     container_name: apache
+    restart: always
     ports:
       - "8008:80"
   prometheus:
     image: prom/prometheus
     container_name: prometheus
+    restart: always
     ports:
       - "9090:9090"
   cadvisor:
     image: google/cadvisor:latest
     container_name: cadvisor
+    restart: always
     ports:
       - "8080:8080" 
     volumes:               

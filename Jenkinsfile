@@ -4,10 +4,12 @@
 def remote = [:]
     remote.host = '192.168.200.68'
     remote.name = 'node'
-    remote.user = 'root'
-    remote.password = 'YsBBB4zgzn9Fjoe'
+    
     remote.allowAnyHosts = true
     node() {
+        remote.user = 'root'
+        remote.password = 'YsBBB4zgzn9Fjoe'
+        withCredentials([usernamePassword(credentialsId: 'remote_machine', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')])
         stage('Remote SSH'){
         sh 'sudo -S apt update'
         sh 'sudo -S apt install -y virtualbox'

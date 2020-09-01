@@ -15,7 +15,7 @@ def remote = [:]
         extensions: [[$class: 'targetDirectory', 
             targetDirectory: 'test']], 
         submoduleCfg: [], 
-        userRemoteConfigs: [[url: 'ssh://git@github.com:adjustawesometeam/workplace.git']]])
+        userRemoteConfigs: [[url: 'git@github.com:adjustawesometeam/workplace.git']]])
     }
     stage('Start services'){
         sh 'cd test && ls -a'

@@ -9,10 +9,11 @@ def remote = [:]
         remote.password = 'YsBBB4zgzn9Fjoe'
         withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')]){
     stage('Checkout'){
-        checkout([$class: 'GitSCM', 
-        branches: [[name: '*/master']],  
-        extensions: [[$class: 'targetDirectory', targetDirectory: 'test']], 
-        userRemoteConfigs: [[url: 'git@github.com:adjustawesometeam/workplace.git']]])
+        checkout([$class: 'GitSCM',
+	  branches: [[name: '*/master']],
+          userRemoteConfigs: [[url: 'git@github.com:adjustawesometeam/workplace.git']],
+          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'test']]
+          ])
     }
     stage('Start services'){
         sh 'cd test && ls -a'

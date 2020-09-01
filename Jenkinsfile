@@ -22,3 +22,4 @@ def remote = [:]
         sh 'vagrant up'
     }
 }
+    }

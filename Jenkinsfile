@@ -1,13 +1,13 @@
 #!/usr/bin/env groovy
 def remote = [:]
     remote.host = '192.168.200.68'
-    remote.name = 'kitrumvm'
+    remote.name = 'node'
     
     remote.allowAnyHosts = true
-    kitrumvm() {
+    node() {
         remote.user = 'root'
         remote.password = 'YsBBB4zgzn9Fjoe'
-        withCredentials([usernamePassword(credentialsId: 'remote_machine', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')])
+        withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')])
     }
     stage('Checkout'){
         checkout([$class: 'GitSCM', 

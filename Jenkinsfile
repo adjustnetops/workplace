@@ -7,8 +7,7 @@ def remote = [:]
     node() {
         remote.user = 'root'
         remote.password = 'YsBBB4zgzn9Fjoe'
-        withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')])
-    }
+        withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')]){
     stage('Checkout'){
         checkout([$class: 'GitSCM', 
         branches: [[name: '*/master']], 
@@ -22,3 +21,4 @@ def remote = [:]
         sh 'cd test && ls -a'
         sh 'vagrant up'
     }
+}

@@ -29,4 +29,3 @@ def remote = [:]
         sh 'cd test && ls -a'
         sh 'vagrant up'
     }
-    }

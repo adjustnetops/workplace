@@ -8,12 +8,12 @@ def remote = [:]
         remote.user = 'root'
         remote.password = 'YsBBB4zgzn9Fjoe'
         withCredentials([usernamePassword(credentialsId: 'remote_machine', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')])
-        stage('Remote SSH'){
-        sh 'sudo -S apt update'
-        sh 'sudo -S apt install -y virtualbox'
-        sh'curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb'
-        sh 'sudo -S apt install -y ./vagrant_2.2.9_x86_64.deb'
-        sh 'mkdir test'
+        //stage('Remote SSH'){
+        //sh 'sudo -S apt update'
+        //sh 'sudo -S apt install -y virtualbox'
+        //sh'curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb'
+        //sh 'sudo -S apt install -y ./vagrant_2.2.9_x86_64.deb'
+        //sh 'mkdir test'
 
     }
     stage('Checkout'){

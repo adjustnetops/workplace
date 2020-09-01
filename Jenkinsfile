@@ -1,6 +1,4 @@
 #!/usr/bin/env groovy
-
-#!/usr/bin/env groovy
 def remote = [:]
     remote.host = '192.168.200.68'
     remote.name = 'node'

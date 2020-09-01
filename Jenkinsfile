@@ -10,11 +10,8 @@ def remote = [:]
         withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')]){
     stage('Checkout'){
         checkout([$class: 'GitSCM', 
-        branches: [[name: '*/master']], 
-        doGenerateSubmoduleConfigurations: false, 
-        extensions: [[$class: 'targetDirectory', 
-            targetDirectory: 'test']], 
-        submoduleCfg: [], 
+        branches: [[name: '*/master']],  
+        extensions: [[$class: 'targetDirectory', targetDirectory: 'test']], 
         userRemoteConfigs: [[url: 'git@github.com:adjustawesometeam/workplace.git']]])
     }
     stage('Start services'){

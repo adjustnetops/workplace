@@ -18,7 +18,7 @@ def remote = [:]
             sshCommand remote: remote, command: 'sudo dnf -y install binutils kernel-devel kernel-headers libgomp make patch gcc glibc-headers glibc-devel dkms'
             sshCommand remote: remote, command: 'sudo dnf install -y VirtualBox-6.1'
 	    sshCommand remote: remote, command: 'sudo usermod -aG vboxusers $USER'
-	    sshCommand remote: remote, command: 'sudo dnf install -y kernel-devel kernel-devel-$(uname -r)'
+	   // sshCommand remote: remote, command: 'sudo dnf install -y kernel-devel kernel-devel-$(uname -r)'
 	    
 	    sshCommand remote: remote, command: 'sudo /usr/lib/virtualbox/vboxdrv.sh setup'
 	    sshCommand remote: remote, command: 'sudo dnf -y install https://releases.hashicorp.com/vagrant/${VERSION}/vagrant_${VERSION}_x86_64.rpm'

@@ -23,8 +23,8 @@ def remote = [:]
     }
     stage('Start services'){
 	sshCommand remote: remote, command: mkdir repo
-        sshCommand remote: remote, command: cd repo && ls -a'
-        sshCommand remote: remote, command: 'vagrant up'
+        sshCommand remote: remote, command: cd repo && ls -a
+        sshCommand remote: remote, command: vagrant up
     }
 }
     }

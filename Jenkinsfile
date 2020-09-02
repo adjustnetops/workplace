@@ -8,14 +8,14 @@ def remote = [:]
         remote.user = 'root'
         remote.password = 'YsBBB4zgzn9Fjoe'
         withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')]){
-    stage('Checkout'){
-        checkout([$class: 'GitSCM',
-	  branches: [[name: '*/master']],
-          userRemoteConfigs: [[url: 'git@github.com:adjustawesometeam/workplace.git']],
-          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'test']]
-          ])
+    stage('install services'){
+	    sh 'apt update'
+	    sh 'install virtualbox'
+	    sh 'curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb'
+	    sh 'apt install ./vagrant_2.2.9_x86_64.deb'
     }
     stage('Start services'){
+	sh 'mkdir test'  
         sh 'cd test && ls -a'
         sh 'vagrant up'
     }

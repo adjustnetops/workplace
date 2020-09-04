@@ -22,7 +22,7 @@ def remote = [:]
     stage('Git clone and start services'){
 	sshCommand remote: remote, command: 'mkdir repo'
 	sshCommand remote: remote, command: 'cd repo'  
-        sshCommand remote: remote, command: 'git clone https://github.com/adjustawesometeam/workplace
+        sshCommand remote: remote, command: 'git clone https://github.com/adjustawesometeam/workplace'
         sshCommand remote: remote, command: 'ls -a'
         sshCommand remote: remote, command: 'vagrant up'
     }

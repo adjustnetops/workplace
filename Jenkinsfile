@@ -20,7 +20,8 @@ def remote = [:]
 	    sshCommand remote: remote, command: 'sudo dnf -y install https://releases.hashicorp.com/vagrant/2.2.10/vagrant_2.2.10_x86_64.rpm'
     }
     stage('Git clone and start services'){
-	    sshCommand remote: remote, command: 'mkdir repo && cd repo'
+	sshCommand remote: remote, command: 'mkdir repo'
+	sshCommand remote: remote, command: 'cd repo'  
         sshCommand remote: remote, command: 'git clone ssh://git@github.com:adjustawesometeam/workplace.git'
         sshCommand remote: remote, command: 'ls -a'
         sshCommand remote: remote, command: 'vagrant up'

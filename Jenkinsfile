@@ -8,7 +8,7 @@ def remote = [:]
         remote.password = 'YsBBB4zgzn9Fjoe'
         withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')]){
     stage('Install services'){
-	    sshCommand remote: remote, command: 'sudo dnf -y install wget'
+	sshCommand remote: remote, command: 'sudo dnf -y install wget'
         sshCommand remote: remote, command: 'wget https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo' 
         sshCommand remote: remote, command: 'sudo mv virtualbox.repo /etc/yum.repos.d'
         sshCommand remote: remote, command: 'wget -q https://www.virtualbox.org/download/oracle_vbox.asc'

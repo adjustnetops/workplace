@@ -8,7 +8,6 @@ def remote = [:]
         remote.password = 'YsBBB4zgzn9Fjoe'
         withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')]){
     stage('Install services'){
-    //sshCommand remote: remote, command: 'sudo dnf update -y'
     sshCommand remote: remote, command: 'sudo dnf clean all'
     sshCommand remote: remote, command: 'sudo rm -r /var/cache/dnf'
     sshCommand remote: remote, command: 'sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo'
@@ -21,7 +20,7 @@ def remote = [:]
     sshCommand remote: remote, command: 'sudo docker-compose --version'
     }
     stage('Git clone and start services'){
-    sshCommand remote: remote, command: 'rm -rf ~/workspace'   
+    sshCommand remote: remote, command: 'rm -rf ~/workplace'   
     sshCommand remote: remote, command: 'git clone https://github.com/adjustawesometeam/workplace.git'
     sshCommand remote: remote, command: 'cd workplace && ls -a  && sudo docker-compose up -d'
     }

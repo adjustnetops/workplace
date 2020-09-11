@@ -8,22 +8,19 @@ def remote = [:]
         remote.password = 'YsBBB4zgzn9Fjoe'
         withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')]){
     stage('Install services'){
-	sshCommand remote: remote, command: 'sudo dnf -y install wget'
-        sshCommand remote: remote, command: 'wget https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo' 
-        sshCommand remote: remote, command: 'sudo mv virtualbox.repo /etc/yum.repos.d'
-        sshCommand remote: remote, command: 'wget -q https://www.virtualbox.org/download/oracle_vbox.asc'
-	sshCommand remote: remote, command: 'sudo rpm --import oracle_vbox.asc'
-	sshCommand remote: remote, command: 'sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm'
-        sshCommand remote: remote, command: 'sudo dnf -y install binutils kernel-devel kernel-headers libgomp make patch gcc glibc-headers glibc-devel dkms'
-        sshCommand remote: remote, command: 'sudo dnf -y install VirtualBox-6.1'
-	sshCommand remote: remote, command: 'sudo usermod -aG vboxusers $USER'
-	sshCommand remote: remote, command: 'sudo dnf -y install https://releases.hashicorp.com/vagrant/2.2.10/vagrant_2.2.10_x86_64.rpm'
-	sshCommand remote: remote, command: 'sudo dnf -y install git'
+	sshCommand remote: remote, command: 'sudo dnf update -y'
+    sshCommand remote: remote, command: 'sudo dnf install -y docker-ce docker-ce-cli containerd.io'
+    sshCommand remote: remote, command: 'sudo systemctl start docker'
+    sshCommand remote: remote, command: 'sudo systemctl enable docker'
+    sshCommand remote: remote, command: 'sudo docker --version'
+    sshCommand remote: remote, command: 'sudo curl -L "https://github.com/docker/compose/releases/download/1.27.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+    sshCommand remote: remote, command: 'sudo chmod +x /usr/local/bin/docker-compose'
+    sshCommand remote: remote, command: 'sudo docker-compose --version'
     }
     stage('Git clone and start services'){
-        sshCommand remote: remote, command: 'git clone https://github.com/adjustawesometeam/workplace.git'
-        sshCommand remote: remote, command: 'cd workplace && ls -a'
-        sshCommand remote: remote, command: 'vagrant up'
+    sshCommand remote: remote, command: 'rm -rf ~/workspace'   
+    sshCommand remote: remote, command: 'git clone https://github.com/adjustawesometeam/workplace.git'
+    sshCommand remote: remote, command: 'cd workplace && ls -a  && sudo docker-compose up -d'
     }
 }
     }

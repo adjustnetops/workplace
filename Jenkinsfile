@@ -10,7 +10,7 @@ def remote = [:]
     stage('Install services'){
     sshCommand remote: remote, command: 'sudo dnf update -y'
     sshCommand remote: remote, command: 'sudo dnf clean all -y'
-    sshCommand remote: remote, command: 'sudo rm -r /var/cache/dnf -y'
+    sshCommand remote: remote, command: 'sudo rm -r /var/cache/dnf'
     sshCommand remote: remote, command: 'sudo dnf install -y docker-ce docker-ce-cli containerd.io'
     sshCommand remote: remote, command: 'sudo systemctl start docker'
     sshCommand remote: remote, command: 'sudo systemctl enable docker'

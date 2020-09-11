@@ -8,10 +8,11 @@ def remote = [:]
         remote.password = 'YsBBB4zgzn9Fjoe'
         withCredentials([usernamePassword(credentialsId: 'kitrumvm', passwordVariable: 'YsBBB4zgzn9Fjoe', usernameVariable: 'root')]){
     stage('Install services'){
-    sshCommand remote: remote, command: 'sudo dnf update -y'
-    sshCommand remote: remote, command: 'sudo dnf clean all -y'
+	sshCommand remote: remote, command: 'sudo dnf update -y'
+    sshCommand remote: remote, command: 'sudo dnf clean all'
     sshCommand remote: remote, command: 'sudo rm -r /var/cache/dnf'
-    sshCommand remote: remote, command: 'sudo dnf install -y docker-ce docker-ce-cli containerd.io'
+    sshCommand remote: remote, command: 'sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo'
+    sshCommand remote: remote, command: 'sudo dnf install docker-ce --nobest -y'
     sshCommand remote: remote, command: 'sudo systemctl start docker'
     sshCommand remote: remote, command: 'sudo systemctl enable docker'
     sshCommand remote: remote, command: 'sudo docker --version'
